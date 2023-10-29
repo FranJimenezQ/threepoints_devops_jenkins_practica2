@@ -1,4 +1,4 @@
-@Library('threepointssharedlib') _
+@Library('threepointssharedlib@main') _
 
 pipeline {
     agent any
@@ -26,4 +26,15 @@ pipeline {
         }
     }
 }
+    node {
+        stage('SCM') {
+            checkout scm
+        }
+        stage('SonarQube Analysis') {
+            def scannerHome = tool 'SonarScanner';
+            withSonarQubeEnv() {
+            sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+    }
 
