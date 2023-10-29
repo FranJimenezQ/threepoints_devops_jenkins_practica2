@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Sonar Analysis') {
             steps {
-                sonarAnalysis(true, false)
+                sonarAnalysis(true, false) 
             }
         }
         stage('Deploy') {
@@ -26,3 +26,4 @@ pipeline {
         }
     }
 }
+
